@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+class thoigian
+{
+private :
+	int iGio, iPhut, iGiay;
+public :
+	thoigian()
+	{
+		this->iGio = 0;
+		this->iPhut = 0;
+		this->iGiay = 0;
+	}
+	~thoigian(){}
+	void Nhap()
+	{
+		do {
+			cout << "nhap gio : ";
+			cin >> iGio;
+		} while (iGio < 0 && iGio >23);
+		do
+		{
+			cout << "nhap phut : ";
+			cin >> iPhut;
+		} while (iPhut < 0 || iPhut > 59);
+		do
+		{
+			cout << "nhap giay : ";
+			cin >> iGiay;
+		} while (iGiay < 0 || iGiay > 59);	
+	}
+	void TinhCongThemMotGiay()
+	{
+		if (iGiay < 59)
+		{
+			iGiay++;
+		}
+		else
+		{
+			iGiay = 0;
+			if (iPhut < 59)
+			{
+				iPhut++;
+				
+			}
+			else
+			{
+				iGio++;
+				iPhut = 0;
+			}
+		}
+	}
+	void Xuat()
+	{
+		
+		cout << (iGio > 10 ? "" : "0") << iGio << ":" << (iPhut > 10 ? "" : "0") << iPhut << ":" << (iGiay > 10 ? "" : "0") << iGiay << endl;
+	}
+};
+int main()
+{
+	thoigian time;
+	cout << "nhap thoi gian : " << endl;
+	time.Nhap();
+	cout << "gio vua nhap la : ";
+	time.Xuat();
+	int n;
+	cout << "nhap so giay muon tang : ";
+	cin >> n;
+	for (int i = 0; i < n;i++)
+	{
+		time.TinhCongThemMotGiay();
+	}
+	cout << "thoi gian sau khi tang 1 giay la : ";
+	time.Xuat();
+	return 0;
+}
